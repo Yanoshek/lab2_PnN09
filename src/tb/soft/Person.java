@@ -21,7 +21,6 @@ enum PersonJob {
 	private PersonJob(String job_name) {
 		jobName = job_name;
 	}
-
 	
 	@Override
 	public String toString() {
@@ -29,6 +28,7 @@ enum PersonJob {
 	}
 	
 } 
+
 class PersonException extends Exception {
 
 	private static final long serialVersionUID = 1L;
@@ -38,49 +38,43 @@ class PersonException extends Exception {
 	}
 	
 } 
+
 public class Person implements Comparable<Person>{
 	
 	protected String firstName;
 	protected String lastName;
 	protected int birthYear;
 	protected PersonJob job;
- 
 	
 	public Person(String first_name, String last_name) throws PersonException {
 		setFirstName(first_name);
 		setLastName(last_name);
 		job = PersonJob.UNKNOWN;
 	}
-
 	
 	public String getFirstName() {
 		return firstName;
 	}
-
 	
 	public void setFirstName(String first_name) throws PersonException {
 		if ((first_name == null) || first_name.equals(""))
 			throw new PersonException("Pole <Imiê> musi byæ wype³nione.");
 		this.firstName = first_name;
 	}
-
 	
 	public String getLastName() {
 		return lastName;
 	}
-
 	
 	public void setLastName(String last_name) throws PersonException {
 		if ((last_name == null) || last_name.equals(""))
 			throw new PersonException("Pole <Nazwisko> musi byæ wype³nione.");
 		this.lastName = last_name;
 	}
-
 	
 	public int getBirthYear() {
 		return birthYear;
 	}
-
 	
 	public void setBirthYear(int birth_year) throws PersonException {
 		if ((birth_year!=0) && (birth_year < 1900 || birth_year > 2030))
@@ -88,9 +82,8 @@ public class Person implements Comparable<Person>{
 		this.birthYear = birth_year;
 	}
 	
-	
 	public void setBirthYear(String birth_year) throws PersonException {
-		if (birth_year == null || birth_year.equals("")){  // pusty ³añcuch znaków oznacza rok niezdefiniowany
+		if (birth_year == null || birth_year.equals("")){ 
 			setBirthYear(0);
 			return;
 		}
@@ -101,19 +94,16 @@ public class Person implements Comparable<Person>{
 		}
 	}
 
-
 	public PersonJob getJob() {
 		return job;
 	}
-
 	
 	public void setJob(PersonJob job){
 		this.job = job;
 	}
 	
-	
 	public void setJob(String job_name) throws PersonException {
-		if (job_name == null || job_name.equals("")) {  // pusty ³añcuch znaków oznacza stanowisko niezdefiniowane
+		if (job_name == null || job_name.equals("")) { 
 			this.job = PersonJob.UNKNOWN;
 			return;
 		}
@@ -126,18 +116,15 @@ public class Person implements Comparable<Person>{
 		throw new PersonException("Nie ma takiego stanowiska.");
 	}
 
-	
 	@Override
 	public String toString() {  
 		return firstName + " " + lastName;
 	}
 	
-	
 	public static void printToFile(PrintWriter writer, Person person){
 		writer.println(person.firstName + "#" + person.lastName + 
 				"#" + person.birthYear + "#" + person.job);
 	}
-	
 	
 	public static void printToFile(String file_name, Person person) throws PersonException {
 		try (PrintWriter writer = new PrintWriter(file_name)) {
@@ -146,7 +133,6 @@ public class Person implements Comparable<Person>{
 			throw new PersonException("Nie odnaleziono pliku " + file_name);
 		}
 	}
-	
 	
 	public static Person readFromFile(BufferedReader reader) throws PersonException{
 		try {
@@ -161,7 +147,6 @@ public class Person implements Comparable<Person>{
 		}	
 	}
 	
-	
 	public static Person readFromFile(String file_name) throws PersonException {
 		try (BufferedReader reader = new BufferedReader(new FileReader(new File(file_name)))) {
 			return Person.readFromFile(reader);
@@ -171,18 +156,15 @@ public class Person implements Comparable<Person>{
 			throw new PersonException("Wyst¹pi³ b³¹d podczas odczytu danych z pliku.");
 		}	
 	}
-	
-	
-
-
+	//Comparable
 	@Override
-	//
 	public int compareTo(Person o) {
 		return getLastName().compareTo(o.getLastName());
 	}
 	
 } 
-//Komparator
+
+//Comparator
 class FNComparator implements Comparator<Person>{
     @Override
     public int compare(Person obj1, Person obj2) {

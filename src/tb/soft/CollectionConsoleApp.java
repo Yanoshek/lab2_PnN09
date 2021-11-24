@@ -16,12 +16,13 @@ public class CollectionConsoleApp {
 			"1 - Podaj dane nowej osoby 		\n" + 
 			"2 - Usuñ dane wybranej osoby   	\n" + 
 			"3 - Modyfikuj dane osoby   		\n" + 
-			"4 - Zapisz osobê do  dane do list 	\n" + 
+			"4 - Zapisz osobê do list			\n" + 
 			"5 - Usuñ dane z list       		\n" + 
 			"6 - Wypisz dane z list     		\n" +
 			"7 - Comparable vs Comparator		\n" +
 			"8 - Dodaj dane do betterPerson 	\n" +
 			"0 - Zakoñcz program        		\n";
+	
 	private static final String DELETE_DATA_MENU = 
 			"    U S U Ñ   D A N E		\n" +
 			"1 - Usuñ dane z HashSet 	\n" + 
@@ -31,6 +32,7 @@ public class CollectionConsoleApp {
 			"5 - Usuñ dane z HashMap 	\n" + 
 			"6 - Usuñ dane z TreeMap 	\n" + 
 			"0 - Powrót do menu g³ównego\n";
+	
 	private static final String COMPARABLE_VS_COMPARATOR =
 			"    C O M P A R A B L E 		\n" + 
 			"            V S                \n" +
@@ -39,7 +41,6 @@ public class CollectionConsoleApp {
 			"2 - Posortuj z comparator		\n" + 
 			"0 - Powrót do menu g³ównego	\n";
 	
-
 	private static final String CHANGE_MENU = 
 			"   Co zmieniæ?     \n" + 
 			"1 - Imiê           \n" + 
@@ -54,8 +55,10 @@ public class CollectionConsoleApp {
 		CollectionConsoleApp application = new CollectionConsoleApp();
 		application.runMainLoop();
 	}
+	
 	private Person currentPerson = null;
 	private BetterPerson currentBetterPerson = null;
+	
 	//Tworzenie zbiorów z klasy better person
 	private HashSet<Person> betterPeopleHashSet = new HashSet<>();
 	private TreeSet<Person> betterPeopleTreeSet = new TreeSet<>();
@@ -133,6 +136,7 @@ public class CollectionConsoleApp {
 	void showCurrentPerson() {
 		showPerson(currentPerson);
 	}
+	
 	static void showPerson(Person person) {
 		StringBuilder sb = new StringBuilder();
 
@@ -145,6 +149,7 @@ public class CollectionConsoleApp {
 			sb.append("Brak danych osoby\n");
 		UI.printMessage(sb.toString());
 	}
+	//Porównuje dzia³anie comarable i comaratora na podstawie sortowania array list
 	void comparableVsComparator() {
 		while(true) {
 			UI.clearConsole();
@@ -161,6 +166,8 @@ public class CollectionConsoleApp {
 			}
 		}
 	}
+	
+	//Wypisuje listy na podstawie iteracji i ³¹czenia stringów
 	void showLists() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -211,6 +218,8 @@ public class CollectionConsoleApp {
 		
 		UI.printInfoMessage(sb.toString());
 	}
+	
+	//Tworzenie nowego BetterPerson
 	static BetterPerson createNewBetterPerson() {
 		String first_name = UI.enterString("Podaj imiê: ");
 		String last_name = UI.enterString("Podaj nazwisko: ");
@@ -228,6 +237,7 @@ public class CollectionConsoleApp {
 		}
 		return person;
 	}
+	
 	static Person createNewPerson() {
 		String first_name = UI.enterString("Podaj imiê: ");
 		String last_name = UI.enterString("Podaj nazwisko: ");
@@ -245,6 +255,8 @@ public class CollectionConsoleApp {
 		}
 		return person;
 	}
+	
+	//Usuwanie osób z list z odpowienimi sposobami dla danych list
 	void deleteDataFromList() {
 		while(true) {
 			UI.clearConsole();
@@ -278,6 +290,7 @@ public class CollectionConsoleApp {
 			}
 		}
 	}
+	
 	static void changePersonData(Person person) {
 		while (true) {
 			UI.clearConsole();
